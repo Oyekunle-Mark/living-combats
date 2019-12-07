@@ -21,7 +21,7 @@ server.get('/', (_, res) =>
 );
 
 server.use((_, res) =>
-  res.status(500).json({
+  res.status(404).json({
     status: 404,
     message: 'That URL looks quite fishy, mate!',
   }),
