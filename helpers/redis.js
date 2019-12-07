@@ -14,6 +14,7 @@ const set = (key, value) => client.set(key, value, redis.print);
 const get = key =>
   client.get(key, (err, result) => {
     if (err) {
+      // eslint-disable-next-line no-console
       console.error(err);
       return null;
     }
