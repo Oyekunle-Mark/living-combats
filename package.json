@@ -1,0 +1,23 @@
+{
+  "name": "living-combats",
+  "version": "1.0.0",
+  "description": "API for a mock football league",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Oyekunle-Mark/living-combats.git"
+  },
+  "keywords": [
+    "API",
+    "football"
+  ],
+  "author": "oyekunle-oloyede",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Oyekunle-Mark/living-combats/issues"
+  },
+  "homepage": "https://github.com/Oyekunle-Mark/living-combats#readme"
+}
