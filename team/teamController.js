@@ -1,4 +1,8 @@
-const { createTeam, getAllTeams } = require('../database/team/teamHelper');
+const {
+  createTeam,
+  getAllTeams,
+  getTeamById,
+} = require('../database/team/teamHelper');
 
 const getTeams = async (_, res) => {
   const teams = await getAllTeams();
@@ -6,6 +10,16 @@ const getTeams = async (_, res) => {
   return res.status(200).json({
     status: 200,
     data: teams,
+  });
+};
+
+const getOneTeam = async (req, res) => {
+  const { id } = req.params;
+  const team = await getTeamById(id);
+
+  return res.status(200).json({
+    status: 200,
+    data: team,
   });
 };
 
@@ -21,4 +35,5 @@ const addTeam = async (req, res) => {
 module.exports = {
   getTeams,
   addTeam,
+  getOneTeam,
 };
