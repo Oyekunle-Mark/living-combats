@@ -6,6 +6,8 @@ const logger = require('morgan');
 
 const server = express();
 
+const authRouter = require('../auth');
+
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
 server.use(logger('dev'));
@@ -19,6 +21,8 @@ server.get('/', (_, res) =>
     message: 'The Mock Premier League API is alive and kicking!',
   }),
 );
+
+server.use('api/auth', authRouter);
 
 server.use((_, res) =>
   res.status(404).json({
