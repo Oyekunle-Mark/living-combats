@@ -6,6 +6,7 @@ const {
   removeFixture,
   updateFixture,
   findFixture,
+  searchFixture,
 } = require('../database/fixture/fixtureHelper');
 
 const getAllFixtures = async (_, res) => {
@@ -105,6 +106,26 @@ const findCompleted = async (_, res) => {
   });
 };
 
+const seachForFixture = async (req, res) => {
+  const { home, away } = req.body;
+  const filter = { home: null, away: null };
+
+  if (home) {
+    filter.home = home;
+  }
+
+  if (away) {
+    filter.away = away;
+  }
+
+  const fixtures = await searchFixture(filter);
+
+  return res.status(200).json({
+    status: 200,
+    data: fixtures,
+  });
+};
+
 module.exports = {
   getAllFixtures,
   addFixture,
@@ -113,4 +134,5 @@ module.exports = {
   editFixture,
   findCompleted,
   findPending,
+  seachForFixture,
 };
