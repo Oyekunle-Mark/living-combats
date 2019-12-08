@@ -11,10 +11,13 @@ const removeTeam = id => Team.findByIdAndDelete(id).exec();
 const updateTeam = (id, update) =>
   Team.findByIdAndUpdate(id, update, { new: true }).exec();
 
+const findTeam = cond => Team.find(cond).exec();
+
 module.exports = {
   getTeamById,
   getAllTeams,
   createTeam,
   removeTeam,
   updateTeam,
+  findTeam,
 };
