@@ -7,6 +7,7 @@ const logger = require('morgan');
 const server = express();
 
 const authRouter = require('../auth');
+const teamRouter = require('../team');
 
 server.use(express.json());
 server.use(express.urlencoded({ extended: false }));
@@ -23,6 +24,7 @@ server.get('/', (_, res) =>
 );
 
 server.use('/api/auth', authRouter);
+server.use('/api/team', teamRouter);
 
 server.use((_, res) =>
   res.status(404).json({
