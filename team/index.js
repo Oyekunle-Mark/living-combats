@@ -12,10 +12,14 @@ const { checkToken } = require('../helpers/authHelpers');
 const wrapInTryCatch = require('../helpers/wrapInTryCatch');
 
 router.get('/', checkToken, wrapInTryCatch(getTeams));
-router.post('/', validateTeamBody, wrapInTryCatch(addTeam));
-router.get('/:id', validateId, wrapInTryCatch(getOneTeam));
-router.delete('/:id', validateId, wrapInTryCatch(deleteTeam));
-router.put('/:id', validateId, validateTeamBody, wrapInTryCatch(editTeam));
+router.post('/', [checkToken, validateTeamBody], wrapInTryCatch(addTeam));
+router.get('/:id', [checkToken, validateId], wrapInTryCatch(getOneTeam));
+router.delete('/:id', [checkToken, validateId], wrapInTryCatch(deleteTeam));
+router.put(
+  '/:id',
+  [checkToken, validateId, validateTeamBody],
+  wrapInTryCatch(editTeam),
+);
 router.post('/search', wrapInTryCatch(searchTeam));
 
 module.exports = router;
