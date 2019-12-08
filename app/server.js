@@ -22,7 +22,7 @@ server.get('/', (_, res) =>
   }),
 );
 
-server.use('api/auth', authRouter);
+server.use('/api/auth', authRouter);
 
 server.use((_, res) =>
   res.status(404).json({
