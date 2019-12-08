@@ -13,12 +13,14 @@ const { checkToken, checkIsAdmin } = require('../helpers/authHelpers');
 const wrapInTryCatch = require('../helpers/wrapInTryCatch');
 
 router.get('/', checkToken, wrapInTryCatch(getAllFixtures));
+router.get('/pending', checkToken, wrapInTryCatch(findPending));
+router.get('/completed', checkToken, wrapInTryCatch(findCompleted));
+router.get('/:id', [checkToken, validateId], wrapInTryCatch(getOneFixture));
 router.post(
   '/',
   [checkToken, checkIsAdmin, validateFixtureBody],
   wrapInTryCatch(addFixture),
 );
-router.get('/:id', [checkToken, validateId], wrapInTryCatch(getOneFixture));
 router.delete(
   '/:id',
   [checkToken, checkIsAdmin, validateId],
@@ -29,7 +31,5 @@ router.put(
   [checkToken, checkIsAdmin, validateId],
   wrapInTryCatch(editFixture),
 );
-router.get('/pending', [checkToken], wrapInTryCatch(findPending));
-router.get('/completed', [checkToken], wrapInTryCatch(findCompleted));
 
 module.exports = router;
