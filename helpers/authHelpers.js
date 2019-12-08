@@ -15,13 +15,19 @@ const checkToken = async (req, res, next) => {
 
   try {
     const isAuthorized = await verify(token);
+
     const { id } = isAuthorized;
 
     if (isAuthorized) {
       const cachedToken = get(id);
 
-      if (cachedToken === token) {
+      if (cachedToken) {
         next();
+      } else {
+        return res.status(401).json({
+          status: 401,
+          message: 'Invalid user token.',
+        });
       }
     }
   } catch (err) {

@@ -37,7 +37,7 @@ const login = async (req, res) => {
 
   const token = await sign({
     id: user.id,
-    idAdmin: user.isAdmin,
+    isAdmin: user.isAdmin,
   });
 
   set(user.id, token);
