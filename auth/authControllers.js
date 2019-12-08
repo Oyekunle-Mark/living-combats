@@ -4,9 +4,7 @@ const { hash } = require('../helpers/bcryptHelper');
 const register = async (req, res) => {
   const hashed = await hash(req.body.password);
 
-  const user = await createUser({ ...req.body, password: hashed });
-
-  console.log(user);
+  await createUser({ ...req.body, password: hashed });
 
   return res.status(201).json({
     status: 201,
