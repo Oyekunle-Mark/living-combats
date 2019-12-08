@@ -18,10 +18,14 @@ router.post(
   wrapInTryCatch(addTeam),
 );
 router.get('/:id', [checkToken, validateId], wrapInTryCatch(getOneTeam));
-router.delete('/:id', [checkToken, validateId], wrapInTryCatch(deleteTeam));
+router.delete(
+  '/:id',
+  [checkToken, checkIsAdmin, validateId],
+  wrapInTryCatch(deleteTeam),
+);
 router.put(
   '/:id',
-  [checkToken, validateId, validateTeamBody],
+  [checkToken, checkIsAdmin, validateId, validateTeamBody],
   wrapInTryCatch(editTeam),
 );
 router.post('/search', wrapInTryCatch(searchTeam));
