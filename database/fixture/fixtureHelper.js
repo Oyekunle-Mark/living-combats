@@ -13,10 +13,11 @@ const updateFixture = (id, update) =>
 
 const findFixture = cond => Fixture.find(cond).exec();
 
-const searchFixture = ({ home, away }) =>
+const searchFixture = ({ home, away, venue }) =>
   Fixture.find().or([
-    { home: { $regex: new RegExp(home, 'i') } },
-    { away: { $regex: new RegExp(away, 'i') } },
+    { home },
+    { away },
+    { venue: { $regex: new RegExp(venue, 'i') } },
   ]);
 
 module.exports = {

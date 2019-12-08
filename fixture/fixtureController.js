@@ -107,8 +107,12 @@ const findCompleted = async (_, res) => {
 };
 
 const seachForFixture = async (req, res) => {
-  const { home, away } = req.body;
-  const filter = { home: null, away: null };
+  const { home, away, venue } = req.body;
+  const filter = {
+    home: null,
+    away: null,
+    venue: null,
+  };
 
   if (home) {
     filter.home = home;
@@ -116,6 +120,10 @@ const seachForFixture = async (req, res) => {
 
   if (away) {
     filter.away = away;
+  }
+
+  if (venue) {
+    filter.venue = venue;
   }
 
   const fixtures = await searchFixture(filter);
