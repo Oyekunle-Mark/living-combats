@@ -5,6 +5,8 @@ const {
   getOneFixture,
   deleteFixture,
   editFixture,
+  findCompleted,
+  findPending,
 } = require('./fixtureController');
 
 const { checkToken, checkIsAdmin } = require('../helpers/authHelpers');
@@ -19,5 +21,7 @@ router.delete(
   wrapInTryCatch(deleteFixture),
 );
 router.put('/:id', [checkToken, checkIsAdmin], wrapInTryCatch(editFixture));
+router.get('/pending', [checkToken], wrapInTryCatch(findPending));
+router.get('/completed', [checkToken], wrapInTryCatch(findCompleted));
 
 module.exports = router;
