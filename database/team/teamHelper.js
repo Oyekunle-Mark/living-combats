@@ -11,7 +11,7 @@ const removeTeam = id => Team.findByIdAndDelete(id).exec();
 const updateTeam = (id, update) =>
   Team.findByIdAndUpdate(id, update, { new: true }).exec();
 
-const findTeam = cond => Team.find(cond).exec();
+const findTeam = cond => Team.find({ name: { $regex: new RegExp(cond, 'i') } });
 
 module.exports = {
   getTeamById,

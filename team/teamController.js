@@ -77,7 +77,7 @@ const editTeam = async (req, res) => {
 };
 
 const searchTeam = async (req, res) => {
-  const teams = await findTeam(req.body);
+  const teams = await findTeam(req.body.name);
 
   return res.status(200).json({
     status: 200,
