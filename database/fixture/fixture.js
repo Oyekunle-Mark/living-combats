@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+mongoose.set('useCreateIndex', true);
+
 const fixtureSchema = new mongoose.Schema({
   time: {
     type: Date,
