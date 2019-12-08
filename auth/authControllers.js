@@ -1,6 +1,7 @@
 const { createUser, findUser } = require('../database/user/userHelper');
 const { hash, compare } = require('../helpers/bcryptHelper');
 const { sign } = require('../helpers/jwtHelpers');
+const { set } = require('../helpers/redis');
 
 const register = async (req, res) => {
   const hashed = await hash(req.body.password);
@@ -38,6 +39,8 @@ const login = async (req, res) => {
     id: user.id,
     idAdmin: user.isAdmin,
   });
+
+  set(user.id, token);
 
   return res.status(200).json({
     status: 200,
