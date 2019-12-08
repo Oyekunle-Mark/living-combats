@@ -5,6 +5,7 @@ const {
   getFixtureById,
   removeFixture,
   updateFixture,
+  findFixture,
 } = require('../database/fixture/fixtureHelper');
 
 const getAllFixtures = async (_, res) => {
@@ -86,10 +87,30 @@ const editFixture = async (req, res) => {
   });
 };
 
+const findPending = async (_, res) => {
+  const fixture = await findFixture({ status: 'pending' });
+
+  return res.status(200).json({
+    status: 200,
+    data: fixture,
+  });
+};
+
+const findCompleted = async (_, res) => {
+  const fixture = await findFixture({ status: 'completed' });
+
+  return res.status(200).json({
+    status: 200,
+    data: fixture,
+  });
+};
+
 module.exports = {
   getAllFixtures,
   addFixture,
   getOneFixture,
   deleteFixture,
   editFixture,
+  findCompleted,
+  findPending,
 };
