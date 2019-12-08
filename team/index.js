@@ -5,6 +5,7 @@ const {
   getOneTeam,
   deleteTeam,
   editTeam,
+  searchTeam,
 } = require('./teamController');
 const { validateId, validateTeamBody } = require('./teamMiddleware');
 const wrapInTryCatch = require('../helpers/wrapInTryCatch');
@@ -14,5 +15,6 @@ router.post('/', validateTeamBody, wrapInTryCatch(addTeam));
 router.get('/:id', validateId, wrapInTryCatch(getOneTeam));
 router.delete('/:id', validateId, wrapInTryCatch(deleteTeam));
 router.put('/:id', validateId, validateTeamBody, wrapInTryCatch(editTeam));
+router.post('/search', wrapInTryCatch(searchTeam));
 
 module.exports = router;

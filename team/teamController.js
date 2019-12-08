@@ -4,6 +4,7 @@ const {
   getTeamById,
   removeTeam,
   updateTeam,
+  findTeam,
 } = require('../database/team/teamHelper');
 
 const getTeams = async (_, res) => {
@@ -75,10 +76,20 @@ const editTeam = async (req, res) => {
   });
 };
 
+const searchTeam = async (req, res) => {
+  const teams = await findTeam(req.body);
+
+  return res.status(200).json({
+    status: 200,
+    data: teams,
+  });
+};
+
 module.exports = {
   getTeams,
   addTeam,
   getOneTeam,
   deleteTeam,
   editTeam,
+  searchTeam,
 };
