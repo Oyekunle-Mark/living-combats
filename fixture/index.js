@@ -7,6 +7,7 @@ const {
   editFixture,
   findCompleted,
   findPending,
+  seachForFixture,
 } = require('./fixtureController');
 const { validateFixtureBody, validateId } = require('./fixtureMiddleware');
 const { checkToken, checkIsAdmin } = require('../helpers/authHelpers');
@@ -31,5 +32,6 @@ router.put(
   [checkToken, checkIsAdmin, validateId],
   wrapInTryCatch(editFixture),
 );
+router.post('/search', wrapInTryCatch(seachForFixture));
 
 module.exports = router;
