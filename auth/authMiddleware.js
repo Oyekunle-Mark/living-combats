@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
     return res.status(400).json({
       status: 400,
       message:
-        'Credential must include username and password of type string.',
+        'Credential must include email and password of type string.',
     });
   }
 
