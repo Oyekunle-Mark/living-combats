@@ -3,6 +3,7 @@ const {
   getAllTeams,
   getTeamById,
   removeTeam,
+  updateTeam,
 } = require('../database/team/teamHelper');
 
 const getTeams = async (_, res) => {
@@ -57,9 +58,27 @@ const deleteTeam = async (req, res) => {
   });
 };
 
+const editTeam = async (req, res) => {
+  const { id } = req.params;
+  const team = await updateTeam(id, req.body);
+
+  if (team) {
+    return res.status(200).json({
+      status: 200,
+      data: team,
+    });
+  }
+
+  return res.status(400).json({
+    status: 400,
+    message: 'No team matches that id',
+  });
+};
+
 module.exports = {
   getTeams,
   addTeam,
   getOneTeam,
   deleteTeam,
+  editTeam,
 };
