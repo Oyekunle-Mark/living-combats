@@ -1,0 +1,27 @@
+const mongoose = require('mongoose');
+
+const fixtureSchema = new mongoose.Schema({
+  time: {
+    type: Date,
+    required: true,
+  },
+  home: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'team',
+  },
+  away: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'team',
+  },
+  venue: {
+    type: String,
+    required: true,
+  },
+  status: {
+    type: String,
+    enum: ['completed', 'pending'],
+    default: 'pending',
+  },
+});
+
+module.exports = mongoose.model('fixture', fixtureSchema);
