@@ -8,11 +8,15 @@ const {
   searchTeam,
 } = require('./teamController');
 const { validateId, validateTeamBody } = require('./teamMiddleware');
-const { checkToken } = require('../helpers/authHelpers');
+const { checkToken, checkIsAdmin } = require('../helpers/authHelpers');
 const wrapInTryCatch = require('../helpers/wrapInTryCatch');
 
 router.get('/', checkToken, wrapInTryCatch(getTeams));
-router.post('/', [checkToken, validateTeamBody], wrapInTryCatch(addTeam));
+router.post(
+  '/',
+  [checkToken, checkIsAdmin, validateTeamBody],
+  wrapInTryCatch(addTeam),
+);
 router.get('/:id', [checkToken, validateId], wrapInTryCatch(getOneTeam));
 router.delete('/:id', [checkToken, validateId], wrapInTryCatch(deleteTeam));
 router.put(
