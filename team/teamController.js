@@ -18,9 +18,16 @@ const getOneTeam = async (req, res) => {
   const { id } = req.params;
   const team = await getTeamById(id);
 
-  return res.status(200).json({
-    status: 200,
-    data: team,
+  if (team) {
+    return res.status(200).json({
+      status: 200,
+      data: team,
+    });
+  }
+
+  return res.status(400).json({
+    status: 400,
+    message: 'No team matches that id',
   });
 };
 
@@ -37,9 +44,16 @@ const deleteTeam = async (req, res) => {
   const { id } = req.params;
   const team = await removeTeam(id);
 
-  return res.status(200).json({
-    status: 200,
-    message: `${team.name} deleted successfully.`,
+  if (team) {
+    return res.status(200).json({
+      status: 200,
+      message: `${team.name} deleted successfully.`,
+    });
+  }
+
+  return res.status(400).json({
+    status: 400,
+    message: 'No team matches that id',
   });
 };
 
