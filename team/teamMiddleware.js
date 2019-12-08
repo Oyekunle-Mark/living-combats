@@ -19,10 +19,10 @@ const validateTeamBody = (req, res, next) => {
 const validateId = (req, res, next) => {
   const { id } = req.params;
 
-  if (!/^\d[a-z]$/.test(id)) {
+  if (id.length !== 24) {
     return res.status(400).json({
       status: 400,
-      message: 'Request parameter must be an integer.',
+      message: 'Request parameter should be 24 characters.',
     });
   }
 
