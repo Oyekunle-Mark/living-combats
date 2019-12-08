@@ -26,7 +26,7 @@ router.delete(
 );
 router.put(
   '/:id',
-  [checkToken, checkIsAdmin, validateFixtureBody, validateId],
+  [checkToken, checkIsAdmin, validateId],
   wrapInTryCatch(editFixture),
 );
 router.get('/pending', [checkToken], wrapInTryCatch(findPending));

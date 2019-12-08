@@ -25,7 +25,7 @@ router.delete(
 );
 router.put(
   '/:id',
-  [checkToken, checkIsAdmin, validateId, validateTeamBody],
+  [checkToken, checkIsAdmin, validateId],
   wrapInTryCatch(editTeam),
 );
 router.post('/search', wrapInTryCatch(searchTeam));
