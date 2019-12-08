@@ -13,6 +13,12 @@ const updateFixture = (id, update) =>
 
 const findFixture = cond => Fixture.find(cond).exec();
 
+const searchFixture = ({ home, away }) =>
+  Fixture.find().or([
+    { home: { $regex: new RegExp(home, 'i') } },
+    { away: { $regex: new RegExp(away, 'i') } },
+  ]);
+
 module.exports = {
   getFixtureById,
   getFixtures,
@@ -20,4 +26,5 @@ module.exports = {
   removeFixture,
   updateFixture,
   findFixture,
+  searchFixture,
 };
