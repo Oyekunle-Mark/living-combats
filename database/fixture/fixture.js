@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 mongoose.set('useCreateIndex', true);
 
 const fixtureSchema = new mongoose.Schema({
-  time: {
+  date: {
     type: Date,
     required: true,
   },
@@ -16,6 +16,10 @@ const fixtureSchema = new mongoose.Schema({
     ref: 'team',
   },
   venue: {
+    type: String,
+    required: true,
+  },
+  link: {
     type: String,
     required: true,
   },

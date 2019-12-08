@@ -12,12 +12,12 @@ const { checkToken, checkIsAdmin } = require('../helpers/authHelpers');
 const wrapInTryCatch = require('../helpers/wrapInTryCatch');
 
 router.get('/', checkToken, wrapInTryCatch(getTeams));
+router.get('/:id', [checkToken, validateId], wrapInTryCatch(getOneTeam));
 router.post(
   '/',
   [checkToken, checkIsAdmin, validateTeamBody],
   wrapInTryCatch(addTeam),
 );
-router.get('/:id', [checkToken, validateId], wrapInTryCatch(getOneTeam));
 router.delete(
   '/:id',
   [checkToken, checkIsAdmin, validateId],
@@ -25,7 +25,7 @@ router.delete(
 );
 router.put(
   '/:id',
-  [checkToken, checkIsAdmin, validateId, validateTeamBody],
+  [checkToken, checkIsAdmin, validateId],
   wrapInTryCatch(editTeam),
 );
 router.post('/search', wrapInTryCatch(searchTeam));
