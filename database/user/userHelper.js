@@ -1,3 +1,10 @@
 const User = require('./user');
 
-module.exports = userDetails => User.create(userDetails);
+const createUser = userDetails => User.create(userDetails);
+
+const findUser = cond => User.findOne(cond).exec();
+
+module.exports = {
+  createUser,
+  findUser,
+};
