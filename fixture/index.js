@@ -8,19 +8,27 @@ const {
   findCompleted,
   findPending,
 } = require('./fixtureController');
-
+const { validateFixtureBody, validateId } = require('./fixtureMiddleware');
 const { checkToken, checkIsAdmin } = require('../helpers/authHelpers');
 const wrapInTryCatch = require('../helpers/wrapInTryCatch');
 
 router.get('/', checkToken, wrapInTryCatch(getAllFixtures));
-router.post('/', [checkToken, checkIsAdmin], wrapInTryCatch(addFixture));
-router.get('/:id', [checkToken], wrapInTryCatch(getOneFixture));
+router.post(
+  '/',
+  [checkToken, checkIsAdmin, validateFixtureBody],
+  wrapInTryCatch(addFixture),
+);
+router.get('/:id', [checkToken, validateId], wrapInTryCatch(getOneFixture));
 router.delete(
   '/:id',
-  [checkToken, checkIsAdmin],
+  [checkToken, checkIsAdmin, validateId],
   wrapInTryCatch(deleteFixture),
 );
-router.put('/:id', [checkToken, checkIsAdmin], wrapInTryCatch(editFixture));
+router.put(
+  '/:id',
+  [checkToken, checkIsAdmin, validateFixtureBody, validateId],
+  wrapInTryCatch(editFixture),
+);
 router.get('/pending', [checkToken], wrapInTryCatch(findPending));
 router.get('/completed', [checkToken], wrapInTryCatch(findCompleted));
 
