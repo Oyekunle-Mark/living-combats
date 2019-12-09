@@ -19,4 +19,8 @@ module.exports = (async () => [
     email: 'kimbo@slice.com',
     password: await hash('brawlthegods'),
   },
+  {
+    email: 'arsene@wenger.com',
+    password: await hash('theyoungshallgrow'),
+  },
 ])();
