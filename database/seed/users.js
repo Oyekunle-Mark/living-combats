@@ -1,20 +1,22 @@
-module.exports = [
+const { hash } = require('../../helpers/bcryptHelper');
+
+module.exports = (async () => [
   {
     email: 'func@func.com',
-    password: 'werocktheworld',
+    password: await hash('werocktheworld'),
   },
   {
     email: 'rainbow@func.com',
-    password: 'swiminmwiththetide',
+    password: await hash('swiminmwiththetide'),
     isAdmin: true,
   },
   {
     email: 'john@wick.com',
-    password: 'killemall',
+    password: await hash('killemall'),
     isAdmin: true,
   },
   {
     email: 'kimbo@slice.com',
-    password: 'brawlthegods',
+    password: await hash('brawlthegods'),
   },
-];
+])();
