@@ -1,7 +1,15 @@
 const request = require('supertest');
 const server = require('../app/server');
+const User = require('../database/user/user');
+const connectTestDb = require('../helpers/connectTestDb');
 
 const baseUrl = '/api/auth';
+
+beforeAll(async () => {
+  connectTestDb();
+
+  User.collection.drop();
+});
 
 describe(`${baseUrl}/register [GET]`, () => {
   it('Registers a user', () =>
