@@ -26,6 +26,13 @@ const seed = async () => {
 
   print('Team');
 
+  let start = 0;
+  let end = 0;
+
+  while (start < end) {}
+
+  print('Fixture');
+
   print('3');
 };
 
