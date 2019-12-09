@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon index.js",
-    "test": "cross-env DB_ENV=testing jest --verbose --coverage --forceExit"
+    "test": "jest --verbose --coverage --forceExit"
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,6 @@
   },
   "homepage": "https://github.com/Oyekunle-Mark/living-combats#readme",
   "devDependencies": {
-    "cross-env": "^6.0.3",
     "eslint": "^6.7.2",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
