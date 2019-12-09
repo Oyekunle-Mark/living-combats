@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { v4 } = require('uuid');
 const { sign, verify } = require('../jwtHelpers');
 
