@@ -1,4 +1,4 @@
-# living-combats
+# Mock League
 
 An API for a mock football league
 
