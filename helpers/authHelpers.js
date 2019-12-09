@@ -19,16 +19,16 @@ const checkToken = async (req, res, next) => {
     const { id } = isAuthorized;
 
     if (isAuthorized) {
-      const cachedToken = get(id);
+      // const cachedToken = get(id);
 
-      if (cachedToken) {
-        next();
-      } else {
-        return res.status(401).json({
-          status: 401,
-          message: 'Invalid user token.',
-        });
-      }
+      // if (cachedToken) {
+      next();
+      // } else {
+      //   return res.status(401).json({
+      //     status: 401,
+      //     message: 'Invalid user token.',
+      //   });
+      // }
     }
   } catch (err) {
     res.status(401).json({
@@ -55,18 +55,18 @@ const checkIsAdmin = async (req, res, next) => {
 
     const { id, isAdmin } = isAuthorized;
 
-    if (isAuthorized) {
-      const cachedToken = get(id);
+    // if (isAuthorized) {
+    //   const cachedToken = get(id);
 
-      if (cachedToken && isAdmin) {
-        next();
-      } else {
-        return res.status(403).json({
-          status: 403,
-          message: 'Only admins can use this feature.',
-        });
-      }
+    if (id && isAdmin) {
+      next();
+    } else {
+      return res.status(403).json({
+        status: 403,
+        message: 'Only admins can use this feature.',
+      });
     }
+    // }
   } catch (err) {
     res.status(401).json({
       status: 401,
