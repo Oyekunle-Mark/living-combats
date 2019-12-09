@@ -15,4 +15,12 @@ describe('Signs and verifies token', () => {
     expect(token).toBeTruthy();
     expect(typeof token).toEqual('string');
   });
+
+  it('Decodes a token', async () => {
+    const decoded = await verify(token);
+
+    expect(decoded).toBeTruthy();
+    expect(decoded.id).toEqual(obj.id);
+    expect(decoded.isAdmin).toEqual(obj.isAdmin);
+  });
 });
