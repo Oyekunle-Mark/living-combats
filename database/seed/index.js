@@ -1,5 +1,7 @@
+require('dotenv').config();
 const users = require('./users');
 const teams = require('./teams');
+const connect = require('../connect');
 
 const User = require('../user/user');
 const Team = require('../team/team');
@@ -7,6 +9,12 @@ const Fixture = require('../fixture/fixture');
 
 // eslint-disable-next-line no-console
 const print = str => console.log(`${str} collection seeded successfully`);
+
+const { DB_URL } = process.env;
+
+connect(DB_URL)
+  .then(() => print(':::: Connection to the mongoDB successfully. ::::'))
+  .catch(err => print(err));
 
 const seed = async () => {
   await User.collection.drop();
