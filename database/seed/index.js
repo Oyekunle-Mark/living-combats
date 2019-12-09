@@ -1,4 +1,5 @@
 require('dotenv').config();
+const process = require('process');
 const users = require('./users');
 const teams = require('./teams');
 const connect = require('../connect');
@@ -8,18 +9,18 @@ const Team = require('../team/team');
 const Fixture = require('../fixture/fixture');
 
 // eslint-disable-next-line no-console
-const print = str => console.log(`${str} collection seeded successfully`);
+const print = str => console.log(`${str}`);
 
 const { DB_URL } = process.env;
 
 connect(DB_URL)
-  .then(() => print(':::: Connection to the mongoDB successfully. ::::'))
+  .then(() => print(':::: Connection to the mongoDB successful. ::::'))
   .catch(err => print(err));
 
 const seed = async () => {
   await User.collection.drop();
   await User.insertMany(await users);
-  print('User');
+  print('User collection seeded successfully');
 
   await Team.collection.drop();
 
@@ -32,7 +33,7 @@ const seed = async () => {
     };
   });
 
-  print('Team');
+  print('Team collection seeded successfully');
 
   let start = 0;
   let end = teamsId.length - 1;
@@ -42,7 +43,7 @@ const seed = async () => {
 
   while (start < end) {
     // eslint-disable-next-line no-await-in-loop
-    await Fixture({
+    await Fixture.create({
       date: new Date(),
       home: teamsId[start].id,
       away: teamsId[end].id,
@@ -55,9 +56,15 @@ const seed = async () => {
     end -= 1;
   }
 
-  print('Fixture');
+  print('Fixture collection seeded successfully');
 
-  print('3');
+  print('3 collections seeded successfully');
+
+  setTimeout(() => process.exit(0), 3000);
 };
 
-seed();
+try {
+  seed();
+} catch (err) {
+  print(err);
+}
