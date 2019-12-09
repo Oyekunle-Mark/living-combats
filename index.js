@@ -2,9 +2,9 @@ require('dotenv').config();
 const server = require('./app/server');
 const connect = require('./database/connect');
 
-const { PORT, DB_URL } = process.env;
+const { PORT, MONGODB_URI } = process.env;
 
-connect(DB_URL)
+connect(MONGODB_URI)
   .then(() =>
     server.listen(PORT, () =>
       // eslint-disable-next-line no-console

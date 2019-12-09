@@ -11,9 +11,9 @@ const Fixture = require('../fixture/fixture');
 // eslint-disable-next-line no-console
 const print = str => console.log(`${str}`);
 
-const { DB_URL } = process.env;
+const { MONGODB_URI } = process.env;
 
-connect(DB_URL)
+connect(MONGODB_URI)
   .then(() => print(':::: Connection to the mongoDB successful. ::::\n'))
   .catch(err => print(err));
 
