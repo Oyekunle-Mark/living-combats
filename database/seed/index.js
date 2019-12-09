@@ -14,13 +14,13 @@ const print = str => console.log(`${str}`);
 const { DB_URL } = process.env;
 
 connect(DB_URL)
-  .then(() => print(':::: Connection to the mongoDB successful. ::::'))
+  .then(() => print(':::: Connection to the mongoDB successful. ::::\n'))
   .catch(err => print(err));
 
 const seed = async () => {
   await User.collection.drop();
   await User.insertMany(await users);
-  print('User collection seeded successfully');
+  print(' - User collection seeded successfully');
 
   await Team.collection.drop();
 
@@ -33,7 +33,7 @@ const seed = async () => {
     };
   });
 
-  print('Team collection seeded successfully');
+  print(' - Team collection seeded successfully');
 
   const teamsId = await Promise.all(teamPromise);
 
@@ -58,9 +58,9 @@ const seed = async () => {
     end -= 1;
   }
 
-  print('Fixture collection seeded successfully');
+  print(' - Fixture collection seeded successfully');
 
-  print('3 collections seeded successfully');
+  print('=> 3 collections seeded successfully');
 
   setTimeout(() => process.exit(0), 3000);
 };
