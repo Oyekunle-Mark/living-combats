@@ -27,7 +27,7 @@ const seed = async () => {
   print('Team');
 
   let start = 0;
-  let end = 0;
+  let end = teamsId.length - 1;
   const status = ['completed', 'pending'];
 
   await Fixture.collection.drop();
