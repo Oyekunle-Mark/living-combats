@@ -40,3 +40,7 @@ The full API docs can be found [here](https://documenter.getpostman.com/view/649
 ## Deploy
 
 This backend is deployed on heroku. Find it [here](https://mock-fl.herokuapp.com/)
+
+## Author
+
+Oyekunle Oloyede
