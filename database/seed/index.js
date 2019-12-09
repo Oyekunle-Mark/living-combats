@@ -24,7 +24,7 @@ const seed = async () => {
 
   await Team.collection.drop();
 
-  const teamsId = teams.map(async team => {
+  const teamId = teams.map(async team => {
     const t = await Team.create(team);
 
     return {
@@ -34,12 +34,12 @@ const seed = async () => {
   });
 
   print('Team collection seeded successfully');
-
+  const teamsId = await Promise.all(teamId)
   let start = 0;
   let end = teamsId.length - 1;
   const status = ['completed', 'pending'];
 
-  await Fixture.collection.drop();
+  // await Fixture.collection.drop();
 
   while (start < end) {
     // eslint-disable-next-line no-await-in-loop
@@ -63,8 +63,4 @@ const seed = async () => {
   setTimeout(() => process.exit(0), 3000);
 };
 
-try {
-  seed();
-} catch (err) {
-  print(err);
-}
+seed();
